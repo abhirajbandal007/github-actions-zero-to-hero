@@ -1,28 +1,97 @@
+# Name of the workflow displayed in GitHub Actions UI
+name: Sample CI/CD Workflow
 
-name: CICD test Workflow
-
+# Defines when the workflow will run
 on:
+  # Allows manual triggering from the GitHub Actions UI
   workflow_dispatch:
-    
+
+# Jobs represent stages of the pipeline (CI/CD stages)
 jobs:
-  
+
+  # -------------------------
+  # 1️⃣ CODE STAGE
+  # -------------------------
   code:
+    # GitHub will provision an Ubuntu runner for this job
     runs-on: ubuntu-latest
+
     steps:
-      - name: checkout code
-        run: echo "Code Clone from Github"
+      # Step 1: Checkout repository code
+      # This pulls the latest code from the GitHub repo into the runner
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+
+      # Step 2: Simple validation step
+      # In real pipelines this could be linting, formatting, or static checks
+      - name: Validate Code
+        run: echo "Code successfully cloned and ready for pipeline."
+
+
+
+  # -------------------------
+  # 2️⃣ BUILD STAGE
+  # -------------------------
   build:
+
+    # This job will run only after the "code" job completes successfully
+    needs: code
+
     runs-on: ubuntu-latest
+
     steps:
-      - name: Build Docker Container
-        run: echo "Docker Container build"
+      # Checkout is required again because each job runs in a fresh runner
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+
+      # Build Docker image
+      # In real scenarios this builds the application container image
+      - name: Build Docker Image
+        run: |
+          echo "Building Docker container image..."
+          # docker build -t sample-app .
+
+
+
+  # -------------------------
+  # 3️⃣ TEST STAGE
+  # -------------------------
   test:
+
+    # This job depends on the build stage
+    needs: build
+
     runs-on: ubuntu-latest
+
     steps:
-      - name: Test the container
-        run: echo "Testing the container"
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+
+      # Run tests on the application or container
+      # Example: unit tests, integration tests, or container validation
+      - name: Run Tests
+        run: |
+          echo "Running application/container tests..."
+          # docker run sample-app npm test
+
+
+
+  # -------------------------
+  # 4️⃣ DEPLOY STAGE
+  # -------------------------
   deploy:
+
+    # Deployment runs only if tests pass
+    needs: test
+
     runs-on: ubuntu-latest
+
     steps:
-      - name: Deploying the app
-        run: echo "Docker compose deployed the app"
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+
+      # Deploy application using Docker Compose / Kubernetes / SSH etc.
+      - name: Deploy Application
+        run: |
+          echo "Deploying application using Docker Compose..."
+          # docker-compose up -d
