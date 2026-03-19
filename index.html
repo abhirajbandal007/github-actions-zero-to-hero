@@ -1,158 +1,236 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Abhiraj Bandal | Portfolio</title>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Abhiraj Bandal | Portfolio</title>
 
-  <style>
-    :root {
-      --primary: #3b82f6;
-      --dark: #0f172a;
-      --light: #f1f5f9;
-      --gray: #64748b;
-    }
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
 
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-      font-family: 'Segoe UI', sans-serif;
-    }
+<style>
+:root {
+  --primary: #6366f1;
+  --accent: #22d3ee;
+  --bg: #0f172a;
+  --glass: rgba(255,255,255,0.08);
+  --border: rgba(255,255,255,0.18);
+}
 
-    body {
-      background: linear-gradient(135deg, #e0f2fe, #f8fafc);
-      color: var(--dark);
-    }
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Inter', sans-serif;
+}
 
-    header {
-      background: rgba(255, 255, 255, 0.7);
-      backdrop-filter: blur(10px);
-      padding: 1rem 2rem;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      position: sticky;
-      top: 0;
-    }
+body {
+  background: var(--bg);
+  color: white;
+  overflow-x: hidden;
+}
 
-    header h1 {
-      color: var(--primary);
-    }
+/* ===== Animated Background ===== */
+body::before, body::after {
+  content: "";
+  position: fixed;
+  width: 500px;
+  height: 500px;
+  border-radius: 50%;
+  filter: blur(120px);
+  z-index: -1;
+}
 
-    nav a {
-      margin-left: 1.2rem;
-      text-decoration: none;
-      color: var(--dark);
-      font-weight: 500;
-    }
+body::before {
+  background: #6366f1;
+  top: -100px;
+  left: -100px;
+}
 
-    nav a:hover {
-      color: var(--primary);
-    }
+body::after {
+  background: #22d3ee;
+  bottom: -100px;
+  right: -100px;
+}
 
-    .hero {
-      height: 90vh;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      text-align: center;
-      padding: 2rem;
-    }
+/* ===== Glass Effect ===== */
+.glass {
+  background: var(--glass);
+  border: 1px solid var(--border);
+  backdrop-filter: blur(18px);
+  border-radius: 16px;
+}
 
-    .hero h2 {
-      font-size: 2.8rem;
-    }
+/* ===== Header ===== */
+header {
+  display: flex;
+  justify-content: space-between;
+  padding: 1rem 2rem;
+  position: sticky;
+  top: 0;
+  z-index: 100;
+}
 
-    .hero p {
-      margin: 1rem 0;
-      color: var(--gray);
-      font-size: 1.1rem;
-    }
+header h1 {
+  font-weight: 700;
+  background: linear-gradient(90deg, var(--primary), var(--accent));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
 
-    .btn {
-      background: var(--primary);
-      color: white;
-      padding: 0.8rem 1.6rem;
-      border-radius: 8px;
-      text-decoration: none;
-      transition: 0.3s;
-    }
+nav a {
+  margin-left: 20px;
+  text-decoration: none;
+  color: #cbd5f5;
+  position: relative;
+  transition: 0.3s;
+}
 
-    .btn:hover {
-      background: #2563eb;
-    }
+nav a::after {
+  content: "";
+  position: absolute;
+  width: 0%;
+  height: 2px;
+  background: var(--accent);
+  bottom: -4px;
+  left: 0;
+  transition: 0.3s;
+}
 
-    section {
-      padding: 4rem 2rem;
-      max-width: 1100px;
-      margin: auto;
-    }
+nav a:hover {
+  color: white;
+}
 
-    .section-title {
-      text-align: center;
-      margin-bottom: 2rem;
-      font-size: 2.2rem;
-    }
+nav a:hover::after {
+  width: 100%;
+}
 
-    .projects {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-      gap: 1.5rem;
-    }
+/* ===== Hero ===== */
+.hero {
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  padding: 2rem;
+}
 
-    .card {
-      background: rgba(255, 255, 255, 0.7);
-      backdrop-filter: blur(12px);
-      padding: 1.5rem;
-      border-radius: 12px;
-      box-shadow: 0 8px 25px rgba(0,0,0,0.05);
-      transition: 0.3s;
-    }
+.hero h2 {
+  font-size: 3rem;
+  font-weight: 700;
+}
 
-    .card:hover {
-      transform: translateY(-6px);
-    }
+.hero p {
+  margin: 1rem 0;
+  color: #94a3b8;
+}
 
-    .skills {
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: center;
-      gap: 12px;
-    }
+/* ===== Button ===== */
+.btn {
+  display: inline-block;
+  padding: 0.9rem 1.8rem;
+  border-radius: 10px;
+  text-decoration: none;
+  color: white;
+  background: linear-gradient(90deg, var(--primary), var(--accent));
+  transition: 0.4s;
+  box-shadow: 0 10px 30px rgba(99,102,241,0.4);
+}
 
-    .skill {
-      background: rgba(255, 255, 255, 0.8);
-      padding: 0.6rem 1.2rem;
-      border-radius: 20px;
-      font-size: 0.9rem;
-      box-shadow: 0 2px 10px rgba(0,0,0,0.05);
-    }
+.btn:hover {
+  transform: translateY(-3px) scale(1.05);
+  box-shadow: 0 15px 40px rgba(34,211,238,0.5);
+}
 
-    .contact {
-      text-align: center;
-    }
+/* ===== Sections ===== */
+section {
+  padding: 5rem 2rem;
+  max-width: 1100px;
+  margin: auto;
+}
 
-    footer {
-      text-align: center;
-      padding: 2rem;
-      background: rgba(255,255,255,0.7);
-      margin-top: 2rem;
-      color: var(--gray);
-    }
+.section-title {
+  text-align: center;
+  margin-bottom: 3rem;
+  font-size: 2.5rem;
+}
 
-    @media(max-width: 600px) {
-      .hero h2 {
-        font-size: 2rem;
-      }
-    }
-  </style>
+/* ===== Cards ===== */
+.projects {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 2rem;
+}
+
+.card {
+  padding: 2rem;
+  transition: 0.4s;
+  position: relative;
+}
+
+.card:hover {
+  transform: translateY(-10px) scale(1.02);
+  border: 1px solid rgba(255,255,255,0.3);
+}
+
+.card::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: 16px;
+  background: linear-gradient(120deg, transparent, rgba(255,255,255,0.2), transparent);
+  opacity: 0;
+  transition: 0.4s;
+}
+
+.card:hover::before {
+  opacity: 1;
+}
+
+/* ===== Skills ===== */
+.skills {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 12px;
+}
+
+.skill {
+  padding: 0.6rem 1.2rem;
+  border-radius: 999px;
+  font-size: 0.9rem;
+  transition: 0.3s;
+}
+
+.skill:hover {
+  transform: scale(1.1);
+  background: linear-gradient(90deg, var(--primary), var(--accent));
+}
+
+/* ===== Contact ===== */
+.contact {
+  text-align: center;
+}
+
+/* ===== Footer ===== */
+footer {
+  text-align: center;
+  padding: 2rem;
+  color: #94a3b8;
+}
+
+/* ===== Responsive ===== */
+@media(max-width: 600px) {
+  .hero h2 {
+    font-size: 2.2rem;
+  }
+}
+</style>
 </head>
 
 <body>
 
-<header>
-  <h1>Abhiraj Bandal</h1>
+<header class="glass">
+  <h1>Abhiraj</h1>
   <nav>
     <a href="#about">About</a>
     <a href="#projects">Projects</a>
@@ -164,38 +242,37 @@
 <section class="hero">
   <div>
     <h2>Hello, I'm Abhiraj 👋</h2>
-    <p>
-      Product Specialist | IoT (ThingWorx) | AWS Certified Solutions Architect
-    </p>
-    <a href="#projects" class="btn">View My Work</a>
+    <p>IoT Specialist | AWS Architect | Building Scalable Systems</p>
+    <a href="#projects" class="btn">Explore My Work</a>
   </div>
 </section>
 
 <section id="about">
   <h2 class="section-title">About Me</h2>
-  <p style="text-align:center; max-width:700px; margin:auto; color:var(--gray);">
-    I am a Product Specialist focused on IoT solutions and cloud technologies.
-    I work with ThingWorx and AWS to build scalable, real-world applications.
-    I enjoy solving complex problems and continuously learning modern architectures.
-  </p>
+  <div class="glass" style="padding:2rem; text-align:center;">
+    <p style="color:#cbd5f5;">
+      I design and build scalable IoT and cloud systems using ThingWorx and AWS.
+      Passionate about modern architectures, automation, and solving real-world problems.
+    </p>
+  </div>
 </section>
 
 <section id="projects">
   <h2 class="section-title">Projects</h2>
   <div class="projects">
-    <div class="card">
+    <div class="card glass">
       <h3>IoT Dashboard</h3>
-      <p>Developed a real-time IoT monitoring dashboard using ThingWorx.</p>
+      <p>Real-time monitoring system with analytics & alerts.</p>
     </div>
 
-    <div class="card">
-      <h3>AWS Cloud Deployment</h3>
-      <p>Designed and deployed scalable applications using AWS services.</p>
+    <div class="card glass">
+      <h3>AWS Deployment</h3>
+      <p>Scalable cloud architecture using best practices.</p>
     </div>
 
-    <div class="card">
-      <h3>CI/CD Automation</h3>
-      <p>Implemented GitHub Actions for automated deployment workflows.</p>
+    <div class="card glass">
+      <h3>CI/CD Pipeline</h3>
+      <p>Automated workflows with GitHub Actions.</p>
     </div>
   </div>
 </section>
@@ -203,23 +280,24 @@
 <section id="skills">
   <h2 class="section-title">Skills</h2>
   <div class="skills">
-    <div class="skill">IoT (ThingWorx)</div>
-    <div class="skill">AWS</div>
-    <div class="skill">Cloud Architecture</div>
-    <div class="skill">CI/CD</div>
-    <div class="skill">GitHub Actions</div>
-    <div class="skill">REST APIs</div>
+    <div class="skill glass">IoT</div>
+    <div class="skill glass">AWS</div>
+    <div class="skill glass">Cloud</div>
+    <div class="skill glass">CI/CD</div>
+    <div class="skill glass">APIs</div>
   </div>
 </section>
 
 <section id="contact" class="contact">
   <h2 class="section-title">Contact</h2>
-  <p>Email: abhibandal33@gmail.com</p>
-  <p>LinkedIn: linkedin.com/in/abhiraj-bandal-a53014194</p>
+  <div class="glass" style="padding:2rem;">
+    <p>Email: abhibandal33@gmail.com</p>
+    <p>LinkedIn: linkedin.com/in/abhiraj-bandal-a53014194</p>
+  </div>
 </section>
 
 <footer>
-  <p>© 2026 Abhiraj Bandal. All rights reserved.</p>
+  <p>© 2026 Abhiraj Bandal</p>
 </footer>
 
 </body>
