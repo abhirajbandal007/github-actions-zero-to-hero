@@ -1,8 +1,8 @@
 name: Porrtfolio
 
 on:
-  push:
-    branches: [main]
+  #push:
+   # branches: [main]
   
   workflow_dispatch:
 
@@ -32,6 +32,8 @@ jobs:
       # static code artifact
       - name: Upload static code artifact
         uses: actions/upload-pages-artifact@v4
+        with:
+          path: "." #path to your portfolio code, in this case the root of the repository
 
       # deploy to github pages
       - name: Deploy to Github Pages
