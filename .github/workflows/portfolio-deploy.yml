@@ -9,6 +9,7 @@ on:
 permissions:
   pages: write # to deploy to github pages
   id-token: write # to authenticate with cloud provider
+  contents: read # to read the repository content
 
 jobs:
   deploy:
