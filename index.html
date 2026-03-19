@@ -7,9 +7,9 @@
 
   <style>
     :root {
-      --primary: #2563eb;
+      --primary: #3b82f6;
       --dark: #0f172a;
-      --light: #f8fafc;
+      --light: #f1f5f9;
       --gray: #64748b;
     }
 
@@ -21,17 +21,17 @@
     }
 
     body {
-      background: var(--light);
+      background: linear-gradient(135deg, #e0f2fe, #f8fafc);
       color: var(--dark);
     }
 
     header {
-      background: white;
+      background: rgba(255, 255, 255, 0.7);
+      backdrop-filter: blur(10px);
       padding: 1rem 2rem;
       display: flex;
       justify-content: space-between;
       align-items: center;
-      box-shadow: 0 2px 10px rgba(0,0,0,0.05);
       position: sticky;
       top: 0;
     }
@@ -61,59 +61,72 @@
     }
 
     .hero h2 {
-      font-size: 2.5rem;
+      font-size: 2.8rem;
     }
 
     .hero p {
       margin: 1rem 0;
       color: var(--gray);
+      font-size: 1.1rem;
     }
 
     .btn {
       background: var(--primary);
       color: white;
-      padding: 0.7rem 1.5rem;
-      border-radius: 6px;
+      padding: 0.8rem 1.6rem;
+      border-radius: 8px;
       text-decoration: none;
+      transition: 0.3s;
+    }
+
+    .btn:hover {
+      background: #2563eb;
     }
 
     section {
       padding: 4rem 2rem;
-      max-width: 1000px;
+      max-width: 1100px;
       margin: auto;
     }
 
     .section-title {
       text-align: center;
-      margin-bottom: 1.5rem;
-      font-size: 2rem;
+      margin-bottom: 2rem;
+      font-size: 2.2rem;
     }
 
     .projects {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
       gap: 1.5rem;
     }
 
     .card {
-      background: white;
+      background: rgba(255, 255, 255, 0.7);
+      backdrop-filter: blur(12px);
       padding: 1.5rem;
-      border-radius: 10px;
-      box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+      border-radius: 12px;
+      box-shadow: 0 8px 25px rgba(0,0,0,0.05);
+      transition: 0.3s;
+    }
+
+    .card:hover {
+      transform: translateY(-6px);
     }
 
     .skills {
       display: flex;
       flex-wrap: wrap;
       justify-content: center;
-      gap: 10px;
+      gap: 12px;
     }
 
     .skill {
-      background: white;
-      padding: 0.5rem 1rem;
+      background: rgba(255, 255, 255, 0.8);
+      padding: 0.6rem 1.2rem;
       border-radius: 20px;
-      box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+      font-size: 0.9rem;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.05);
     }
 
     .contact {
@@ -123,9 +136,15 @@
     footer {
       text-align: center;
       padding: 2rem;
-      background: white;
+      background: rgba(255,255,255,0.7);
       margin-top: 2rem;
       color: var(--gray);
+    }
+
+    @media(max-width: 600px) {
+      .hero h2 {
+        font-size: 2rem;
+      }
     }
   </style>
 </head>
@@ -146,7 +165,7 @@
   <div>
     <h2>Hello, I'm Abhiraj 👋</h2>
     <p>
-      Product Specialist at PTC | IoT (ThingWorx) | AWS Certified Solutions Architect
+      Product Specialist | IoT (ThingWorx) | AWS Certified Solutions Architect
     </p>
     <a href="#projects" class="btn">View My Work</a>
   </div>
@@ -155,9 +174,9 @@
 <section id="about">
   <h2 class="section-title">About Me</h2>
   <p style="text-align:center; max-width:700px; margin:auto; color:var(--gray);">
-    I am a Product Specialist with expertise in IoT platforms like ThingWorx and cloud technologies.
-    I enjoy working on scalable solutions and exploring modern cloud architectures.
-    With a background in Computer Engineering, I am passionate about solving real-world problems using technology.
+    I am a Product Specialist focused on IoT solutions and cloud technologies.
+    I work with ThingWorx and AWS to build scalable, real-world applications.
+    I enjoy solving complex problems and continuously learning modern architectures.
   </p>
 </section>
 
@@ -166,17 +185,17 @@
   <div class="projects">
     <div class="card">
       <h3>IoT Dashboard</h3>
-      <p>Built a real-time IoT dashboard using ThingWorx.</p>
+      <p>Developed a real-time IoT monitoring dashboard using ThingWorx.</p>
     </div>
 
     <div class="card">
       <h3>AWS Cloud Deployment</h3>
-      <p>Deployed scalable applications using AWS services.</p>
+      <p>Designed and deployed scalable applications using AWS services.</p>
     </div>
 
     <div class="card">
-      <h3>Portfolio CI/CD</h3>
-      <p>Automated deployment using GitHub Actions.</p>
+      <h3>CI/CD Automation</h3>
+      <p>Implemented GitHub Actions for automated deployment workflows.</p>
     </div>
   </div>
 </section>
@@ -187,8 +206,9 @@
     <div class="skill">IoT (ThingWorx)</div>
     <div class="skill">AWS</div>
     <div class="skill">Cloud Architecture</div>
+    <div class="skill">CI/CD</div>
     <div class="skill">GitHub Actions</div>
-    <div class="skill">HTML/CSS</div>
+    <div class="skill">REST APIs</div>
   </div>
 </section>
 
