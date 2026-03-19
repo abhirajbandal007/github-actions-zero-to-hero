@@ -43,7 +43,7 @@ This setup follows a **GitOps approach**, meaning every update to the repository
 
 ## 🌐 Live Demo
 
-You can view the live website here: **[Your Custom Domain or GitHub Pages URL]**  
+You can view the live website here: https://portfolio.techabhi.xyz/  
 
 ---
 
