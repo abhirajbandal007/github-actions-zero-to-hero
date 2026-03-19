@@ -3,11 +3,36 @@ name: Porrtfolio
 on:
   push:
     branches: [main]
+  
+  workflow_dispatch:
+
+permissions:
+  pages: write # to deploy to github pages
+  id-token: write # to authenticate with cloud provider
 
 jobs:
   deploy:
     runs-on: ubuntu-latest
+
+    environment:
+      name: github-pages
+      url: ${{ steps.deploy-pages.outputs.page_url }}
+
     steps:
+      #get access to your portfolio code via prebuilt action
+      # clones or checks out the code in the repository to the runner
+      #step 1
       - name: Checkout code
         uses: actions/checkout@v4
-        
+      
+      # setup github pages to deploy your portfolio
+      - name: Setup Github Pages
+        uses: actions/configure-pages@v4  
+
+      # static code artifact
+      - name: Upload static code artifact
+        uses: actions/upload-pages-artifact@v4
+
+      # deploy to github pages
+      - name: Deploy to Github Pages
+        uses: actions/deploy-pages@v4   
